@@ -1,35 +1,39 @@
 @startuml
 
-class HangedManGame
+object HangedManGame
 
-class Player
-class Giver
-class Guesser
+object Player
+object Giver
+object Guesser
 
-class SecretWord
-class Character
-class MaxAttemps
-class CountAttemps
-' class AttempedWord
-' class AttempedCharacters
+object SecretWord
+object Character
+object MaxAttemps
+object CountAttemps
+' object AttempedWord
+object AttempedCharacters
+' object CharAttemp
+' object WordAttemp
 SecretWord *-- Character
 SecretWord o-- MaxAttemps
 SecretWord o-- CountAttemps
 ' SecretWord o-- AttempedWord
-' SecretWord o-- AttempedCharacters
+SecretWord o-- AttempedCharacters
+' SecretWord o-- CharAttemp
+' SecretWord o-- WordAttemp
 
 
 ' Actions
-class SetSecretWord
-class GuessAWord
-class GuessACharacter
+object SetSecretWord
+object AttempAWord
+object AttempACharacter
 
 HangedManGame o--"2" Player
 HangedManGame o-- SecretWord
 Player <|-- Giver
 Player <|-- Guesser
 Giver ..> SetSecretWord
-Guesser ..> GuessAWord
-Guesser ..> GuessACharacter
+Guesser ..> AttempAWord
+Guesser ..> AttempACharacter
 
 @enduml

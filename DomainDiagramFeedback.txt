@@ -3,6 +3,7 @@
 class HangedManGame{
     - giver: Giver
     - guesser: Guesser
+    - secretWord: SecretWord
 }
 
 class Player{
@@ -34,6 +35,7 @@ class SecretWord{
     + charAttemp(character: char)
     + wordAttemp(word: String)
     + canCharactersMatchWord(): boolean
+    + printSecretWord()
     + hasWon(): boolean
     + hasLost(): boolean
 }
@@ -44,8 +46,6 @@ HangedManGame o--"2" Player
 HangedManGame o-- SecretWord
 Player <|-- Giver
 Player <|-- Guesser
-Giver ..> GiveAWord
-Guesser ..> GuessAWord
-Guesser ..> GuessACharacter
+Player ..> SecretWord
 
 @enduml
