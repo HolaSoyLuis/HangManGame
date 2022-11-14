@@ -1,0 +1,52 @@
+@startuml hangman_exercise
+
+object HangManGame
+object Player
+object Giver
+object Guesser
+object setSecretWord
+object setMaxAttemps
+object attempAWord
+object attempACharacter
+
+HangManGame o--"2" Player
+Player <|-- Giver
+Player <|-- Guesser
+Giver ..> setSecretWord
+Giver ..> setMaxAttemps
+Guesser o..> attempAWord
+Guesser o..> attempACharacter
+
+object Board
+object countAttemps
+object maxAttemps
+object Turn
+object turnActions
+object printSecretWord
+object checkIfHasWon
+object checkIfHasLost
+
+Board *-- countAttemps
+Board *-- maxAttemps
+' Board o-- SecretWord
+Board o-- Turn
+Turn ..> attempAWord
+Turn ..> attempACharacter
+Turn ..> turnActions
+turnActions ..> checkIfHasWon
+turnActions ..> checkIfHasLost
+turnActions ..> printSecretWord
+
+object SecretWord
+object word
+object attempedWord
+object attempedCharacters
+
+SecretWord *-- word
+SecretWord ..> attempedWord
+SecretWord ..> attempedCharacters
+
+HangManGame *-- Board
+Board o-- SecretWord
+
+@enduml

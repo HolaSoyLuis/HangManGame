@@ -28,10 +28,14 @@ object SetSecretWord
 object AttempAWord
 object AttempACharacter
 
+object Turn
+Turn o-- SecretWord
+Turn <.. Player
+
 HangedManGame o--"2" Player
-HangedManGame o-- SecretWord
+HangedManGame --> Turn
 Player <|-- Giver
-Player <|-- Guesser
+Player <|-- Guessaer
 Giver ..> SetSecretWord
 Guesser ..> AttempAWord
 Guesser ..> AttempACharacter

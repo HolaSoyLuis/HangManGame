@@ -25,6 +25,14 @@ class Guesser{
     + attempAWord(word: String)
 }
 
+class Board{
+    - guesser: Guesser
+    - secretWord: SecretWord
+    - turn: Turn
+    + Board
+    + 
+}
+
 class SecretWord{
     - word: String
     - maxAttemps: int
