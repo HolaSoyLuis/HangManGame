@@ -10,13 +10,17 @@ class SecretWord
 class Character
 class MaxAttemps
 class CountAttemps
+' class AttempedWord
+' class AttempedCharacters
 SecretWord *-- Character
 SecretWord o-- MaxAttemps
 SecretWord o-- CountAttemps
+' SecretWord o-- AttempedWord
+' SecretWord o-- AttempedCharacters
 
 
 ' Actions
-class GiveAWord
+class SetSecretWord
 class GuessAWord
 class GuessACharacter
 
@@ -24,7 +28,7 @@ HangedManGame o--"2" Player
 HangedManGame o-- SecretWord
 Player <|-- Giver
 Player <|-- Guesser
-Giver ..> GiveAWord
+Giver ..> SetSecretWord
 Guesser ..> GuessAWord
 Guesser ..> GuessACharacter
 
