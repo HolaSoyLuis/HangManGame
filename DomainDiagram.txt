@@ -21,18 +21,19 @@ object Board
 object countAttemps
 object maxAttemps
 object Turn
-object turnActions
 object printSecretWord
 object checkIfHasWon
 object checkIfHasLost
 
+HangManGame *-- Board
+HangManGame o-- Turn
 Board *-- countAttemps
 Board *-- maxAttemps
-Board <-- Turn
-Turn o-- turnActions
-turnActions <|-- checkIfHasWon
-turnActions <|-- checkIfHasLost
-turnActions <|-- printSecretWord
+Board --> Turn
+Player --> Turn
+Turn o-- checkIfHasWon
+Turn o-- checkIfHasLost
+Turn o-- printSecretWord
 
 object SecretWord
 object word
@@ -41,10 +42,6 @@ object attempedCharacters
 SecretWord *-- word
 SecretWord o-- attempedCharacters
 
-HangManGame *-- Board
-HangManGame o-- Turn
 Board o-- SecretWord
-' Player --> Board
-Player --> Turn
 
 @enduml
