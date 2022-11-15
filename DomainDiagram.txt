@@ -1,43 +1,50 @@
-@startuml
+@startuml hangman_exercise
 
-object HangedManGame
-
+object HangManGame
 object Player
 object Giver
 object Guesser
+object setSecretWord
+object setMaxAttemps
+object attempAWord
+object attempACharacter
+
+HangManGame *--"2" Player
+Player <|-- Giver
+Player <|-- Guesser
+Giver o-- setSecretWord
+Giver o-- setMaxAttemps
+Guesser o-- attempAWord
+Guesser o-- attempACharacter
+
+object Board
+object countAttemps
+object maxAttemps
+object Turn
+object turnActions
+object printSecretWord
+object checkIfHasWon
+object checkIfHasLost
+
+Board *-- countAttemps
+Board *-- maxAttemps
+Board o-- Turn
+Turn o-- turnActions
+turnActions <|-- checkIfHasWon
+turnActions <|-- checkIfHasLost
+turnActions <|-- printSecretWord
 
 object SecretWord
-object Character
-object MaxAttemps
-object CountAttemps
-' object AttempedWord
-object AttempedCharacters
-' object CharAttemp
-' object WordAttemp
-SecretWord *-- Character
-SecretWord o-- MaxAttemps
-SecretWord o-- CountAttemps
-' SecretWord o-- AttempedWord
-SecretWord o-- AttempedCharacters
-' SecretWord o-- CharAttemp
-' SecretWord o-- WordAttemp
+object word
+object attempedCharacters
 
+SecretWord *-- word
+SecretWord o-- attempedCharacters
 
-' Actions
-object SetSecretWord
-object AttempAWord
-object AttempACharacter
-
-object Turn
-Turn o-- SecretWord
-Turn <.. Player
-
-HangedManGame o--"2" Player
-HangedManGame --> Turn
-Player <|-- Giver
-Player <|-- Guessaer
-Giver ..> SetSecretWord
-Guesser ..> AttempAWord
-Guesser ..> AttempACharacter
+HangManGame *-- Board
+HangManGame o-- Turn
+Board o-- SecretWord
+Player --o Board
+Player --> Turn
 
 @enduml

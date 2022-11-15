@@ -9,13 +9,13 @@ object setMaxAttemps
 object attempAWord
 object attempACharacter
 
-HangManGame o--"2" Player
+HangManGame *--"2" Player
 Player <|-- Giver
 Player <|-- Guesser
-Giver ..> setSecretWord
-Giver ..> setMaxAttemps
-Guesser o..> attempAWord
-Guesser o..> attempACharacter
+Giver o-- setSecretWord
+Giver o-- setMaxAttemps
+Guesser o-- attempAWord
+Guesser o-- attempACharacter
 
 object Board
 object countAttemps
@@ -28,25 +28,23 @@ object checkIfHasLost
 
 Board *-- countAttemps
 Board *-- maxAttemps
-' Board o-- SecretWord
 Board o-- Turn
-Turn ..> attempAWord
-Turn ..> attempACharacter
-Turn ..> turnActions
-turnActions ..> checkIfHasWon
-turnActions ..> checkIfHasLost
-turnActions ..> printSecretWord
+Turn o-- turnActions
+turnActions <|-- checkIfHasWon
+turnActions <|-- checkIfHasLost
+turnActions <|-- printSecretWord
 
 object SecretWord
 object word
-object attempedWord
 object attempedCharacters
 
 SecretWord *-- word
-SecretWord ..> attempedWord
-SecretWord ..> attempedCharacters
+SecretWord o-- attempedCharacters
 
 HangManGame *-- Board
+HangManGame o-- Turn
 Board o-- SecretWord
+Player --o Board
+Player --> Turn
 
 @enduml

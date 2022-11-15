@@ -1,31 +1,59 @@
 @startuml
 
-class HangedManGame
+class HangedManGame{
+    - giver: Giver
+    - guesser: Guesser
+    - secretWord: SecretWord
+}
 
-class Player
-class Giver
-class Guesser
+class Player{
+    - name: String
+    + Player()
+    + setName(name: String)
+    + getName(): String
+}
 
-class SecretWord
-class Character
-class MaxAttemps
-class CountAttemps
-SecretWord *-- Character
-SecretWord o-- MaxAttemps
-SecretWord o-- CountAttemps
+class Giver{
+    - secretWord: SecretWord
+    + SetSecretWord()
+    + SetMaxAttemps()
+}
 
+class Guesser{
+    - secretWord: SecretWord
+    + attempAChar(character: char)
+    + attempAWord(word: String)
+}
 
-' Actions
-class GiveAWord
-class GuessAWord
-class GuessACharacter
+class Board{
+    - guesser: Guesser
+    - secretWord: SecretWord
+    - turn: Turn
+    + Board
+    + 
+}
+
+class SecretWord{
+    - word: String
+    - maxAttemps: int
+    - countAttemps: int
+    - attempedWord: String
+    - attempedCharacters: Char[]
+    + SecretWord(word: String, maxAttemps: int)
+    + charAttemp(character: char)
+    + wordAttemp(word: String)
+    + canCharactersMatchWord(): boolean
+    + printSecretWord()
+    + hasWon(): boolean
+    + hasLost(): boolean
+}
+
+' Board?
 
 HangedManGame o--"2" Player
 HangedManGame o-- SecretWord
 Player <|-- Giver
 Player <|-- Guesser
-Giver ..> GiveAWord
-Guesser ..> GuessAWord
-Guesser ..> GuessACharacter
+Player ..> SecretWord
 
 @enduml
