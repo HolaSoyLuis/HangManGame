@@ -42,9 +42,7 @@ SecretWord *-- word
 SecretWord o-- attempedCharacters
 
 HangManGame *-- Board
-HangManGame o-- Turn
 Board o-- SecretWord
 Player --o Board
-Player --> Turn
 
 @enduml

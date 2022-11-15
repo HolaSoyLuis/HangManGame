@@ -28,7 +28,7 @@ object checkIfHasLost
 
 Board *-- countAttemps
 Board *-- maxAttemps
-Board o-- Turn
+Board <-- Turn
 Turn o-- turnActions
 turnActions <|-- checkIfHasWon
 turnActions <|-- checkIfHasLost
@@ -44,7 +44,7 @@ SecretWord o-- attempedCharacters
 HangManGame *-- Board
 HangManGame o-- Turn
 Board o-- SecretWord
-Player --o Board
+' Player --> Board
 Player --> Turn
 
 @enduml
